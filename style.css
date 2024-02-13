@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Zeyada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap');
+
+body{
+    color: white;
+    background-color: rgb(18, 17, 26);
+}
+
+main{
+    max-width: 1250px;
+    width: 90%;
+    margin: auto;
+    margin-top: 250px;
+    border: 2px solid white;
+    border-radius: 25px;
+}
+
+#feladatFajta{
+    text-align: center;
+    font-size: 40px;
+    font-family: "Trade Winds";
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#feladatValaszto{
+    max-width: 1000px;
+    width: 90%;
+    margin: auto;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 25px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+
+}
+
+#feladatValaszto button {
+    background-color: rgb(18, 17, 26);
+    color: white;
+    transition: 0.5s;
+    border: 2px solid white;
+    border-radius: 25px;
+    width: 90%;
+    margin: auto;
+    padding: 10px;
+    font-family: "Unbounded";
+    font-size: 20px;
+}
+
+#feladatValaszto button:hover{
+    transition: 0.5s;
+    border: 2px solid purple;
+    margin: auto;
+    cursor: pointer;
+}
+
+#feladatValaszto button:disabled{
+    transition: 0.5s;
+    border: 2px solid white;
+    background-color: darkred;
+    color: white;
+    width: 88%;
+    cursor: not-allowed;
+}
+
+#feladatTer{
+    margin: auto;
+    text-align: center;
+    font-size: 40px;
+}
+
+#feladatTer #nbr{
+    font-size: 40px;
+    width: 250px;
+}
+
+#feladatTer #nbr::-webkit-outer-spin-button,
+#feladatTer #nbr::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+footer{
+    text-align: center;
+    font-size: 30px;
+    font-family: "Zeyada";
+}
+
+@media screen and (max-width: 700px) {
+    #feladatValaszto{
+        grid-template-columns: 1fr;
+    }
+
+    #szamolas{
+        padding: 20px;
+    }
+
+    #iras{
+        padding: 20px;
+    }
+
+    #olvasas{
+        padding: 20px;
+    }
+
+    #feladatTer{
+        margin: auto;
+        text-align: center;
+        font-size: 35px;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    
+    #feladatTer #nbr{
+        font-size: 35px;
+        width: 100px;
+    }
+}
