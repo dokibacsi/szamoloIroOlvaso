@@ -13,9 +13,9 @@ class MatekModel{
         this.taskType = Math.floor(Math.random() * 2) + 1;
         //console.log(this.taskType)
         if(this.taskType == 1){
-            this.#osszead(this.numberList);
+            this.osszead(this.numberList);
         }else if(this.taskType == 2){
-            this.#kivon(this.numberList);
+            this.kivon(this.numberList);
         }
     }
 
@@ -37,20 +37,12 @@ class MatekModel{
         //console.log(this.numberList)
     }
 
-    #osszead(list){
-        return list[0] + list[1]
+    osszead(){
+        return this.numberList[0] + this.numberList[1]
     }
 
-    #kivon(list){
-        return list[0] - list[1]
-    }
-
-    #szoroz(list){
-        return list[0] * list[1]
-    }
-
-    #oszt(list){
-        return list[0] / list[1]
+    kivon(list){
+        return this.numberList[0] - this.numberList[1]
     }
 
     getNumberList(){

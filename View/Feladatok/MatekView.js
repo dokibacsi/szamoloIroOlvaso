@@ -19,15 +19,15 @@ class MatekView {
     let txt = "";
     console.log(taskNumber, taskType, list);
       if (taskType == 1) {
-        txt += `<p>${list[0]} + ${list[1]} = `;
-        txt += '<input type="number" name="number" id="nbr">';
-        txt += "<button id='next'>Következő</button>";
+        txt += `<p class="feladat">${list[0]} + ${list[1]} = </p>`;
+        txt += '<input class="nbr" type="number" name="number" id="nbr">';
         //console.log(txt);
       } else if (taskType == 2) {
-        txt += `<p>${list[0]} - ${list[1]} = `;
-        txt += '<input type="number" name="number" id="nbr">';
+        txt += `<p class="feladat">${list[0]} - ${list[1]} = </p>`;
+        txt += '<input class="nbr" type="number" name="number" id="nbr">';
         //console.log(txt);
       }
+      txt += `<button class="next">Következő</button>`;
 
     //console.log(txt)
     pElem.html(txt);

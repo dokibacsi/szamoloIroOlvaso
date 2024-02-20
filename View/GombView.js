@@ -9,7 +9,6 @@ class GombView{
         let txt = `<button id="szamolas">MATEK</button>`
         txt += `<button id="iras">ÍRÁS</button>`
         txt += `<button id="olvasas">OLVASÁS</button>`
-
         pElem.html(txt);
     }
     
