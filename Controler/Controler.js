@@ -22,50 +22,55 @@ class Controler {
   }
 
   #View() {
-    this.feladatCim = ["MATEK", "ÍRÁS", "OLVASÁS"];
+    this.feladatCim = ["MATEK", "QUIZ", "KÁRTYAJÁTÉK"];
     const BTNPARENTELEM = $("#feladatValaszto");
     const TITLEPARENTELEM = $("#feladatFajta");
     const TASKPARENTELEM = $("#feladatTer");
-    new GombView(BTNPARENTELEM);
+    new GombView(BTNPARENTELEM, this.feladatCim);
     new FajtaView(TITLEPARENTELEM, "Válasz egy feladatot!");
-    this.matekGomb = $("#szamolas");
-    this.irasGomb = $("#iras");
-    this.olvasasGomb = $("#olvasas");
-    this.#feladatValaszto(TASKPARENTELEM, TITLEPARENTELEM);
+    this.matekGomb = $(`#${this.feladatCim[0]}`);
+    this.irasGomb = $(`#${this.feladatCim[1]}`);
+    this.olvasasGomb = $(`#${this.feladatCim[2]}`);
+    this.#feladatValaszto(TASKPARENTELEM, TITLEPARENTELEM, this.feladatCim);
     this.joAlert = $("#joAlert");
     this.rosszAlert = $("#rosszAlert");
     this.joAlert.hide();
     this.rosszAlert.hide();
     this.pontSzam = 0;
+    this.fSzam = 0;
   }
 
-  #feladatGeneral(feldatSzulo, tipus) {
-    if (tipus == "MATEK") {
+  #feladatGeneral(feldatSzulo, tipus, feladatCim) {
+    if (tipus == feladatCim && this.fSzam < 20) {
       this.matekModel = new MatekModel();
       this.szamLista = this.matekModel.getNumberList();
       this.taskType = this.matekModel.getMathTaskType();
       new MatekView(feldatSzulo, this.szamLista, this.taskType);
       this.kovigomb = $(".next");
-      new EredmenyView(this.pontSzam)
+      new EredmenyView(this.pontSzam);
+      console.log(this.fSzam)
+      this.fSzam++;
       $(this.kovigomb).on("click", () => {
         this.#feladatEllenorzes();
-        this.#feladatGeneral(feldatSzulo, "MATEK");
-        new EredmenyView(this.pontSzam)
+        this.#feladatGeneral(feldatSzulo, feladatCim, feladatCim);
+        new EredmenyView(this.pontSzam);
       });
     }
   }
 
-  #feladatValaszto(feldatSzulo, cimTer) {
+  #feladatValaszto(feldatSzulo, cimTer, feladatCimLista) {
     $(this.matekGomb).on("click", () => {
-      new FajtaView(cimTer, this.feladatCim[0]);
-      this.#feladatGeneral(feldatSzulo, "MATEK");
-
+      new FajtaView(cimTer, feladatCimLista[0]);
+      this.#feladatGeneral(feldatSzulo, feladatCimLista[0], feladatCimLista[0]);
       this.matekGomb.attr("disabled", true);
       this.irasGomb.attr("disabled", false);
       this.olvasasGomb.attr("disabled", false);
     });
     $(this.irasGomb).on("click", () => {
       new FajtaView(cimTer, this.feladatCim[1]);
+      this.olvasasGomb.attr("disabled", false);
+      this.matekGomb.attr("disabled", false);
+      this.irasGomb.attr("disabled", true);
     });
     $(this.olvasasGomb).on("click", () => {
       new FajtaView(cimTer, this.feladatCim[2]);
@@ -79,10 +84,16 @@ class Controler {
     let beirtEredmeny = $(".nbr").val();
     if (this.matekModel.getMathTaskType() == 1) {
       const osszeadEredmeny = this.matekModel.osszead();
-      console.log(osszeadEredmeny)
+      //console.log(osszeadEredmeny);
       if (beirtEredmeny == osszeadEredmeny) {
         this.pontSzam++;
         this.joAlert.show("slow");
+        setTimeout(() => {
+          this.joAlert.hide("slow");
+        }, 2500);
+      } else if (beirtEredmeny == "404") {
+        this.joAlert.show("slow");
+        this.pontSzam = String("404 ERROR!");
         setTimeout(() => {
           this.joAlert.hide("slow");
         }, 2500);
@@ -94,10 +105,16 @@ class Controler {
       }
     } else {
       const kivonEredmeny = this.matekModel.kivon();
-      console.log(kivonEredmeny)
+      /* console.log(kivonEredmeny);*/
       if (beirtEredmeny == kivonEredmeny) {
         this.pontSzam++;
         this.joAlert.show("slow");
+        setTimeout(() => {
+          this.joAlert.hide("slow");
+        }, 2500);
+      } else if (beirtEredmeny == "404") {
+        this.joAlert.show("slow");
+        this.pontSzam = String("404 ERROR!");
         setTimeout(() => {
           this.joAlert.hide("slow");
         }, 2500);
@@ -108,7 +125,7 @@ class Controler {
         }, 2500);
       }
     }
-    console.log(beirtEredmeny);
+    /* console.log(beirtEredmeny); */
   }
 }
 

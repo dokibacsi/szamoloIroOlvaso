@@ -1,14 +1,18 @@
 class GombView{
+    #lista
     #parentElement
-    constructor(parentElement){
+    
+    constructor(parentElement, lista){
         this.#parentElement = parentElement
-        this.#gombMegjelenit(this.#parentElement)
+        this.#lista = lista;
+        this.#gombMegjelenit(this.#parentElement, this.#lista)
     }
 
-    #gombMegjelenit(pElem){
-        let txt = `<button id="szamolas">MATEK</button>`
-        txt += `<button id="iras">ÍRÁS</button>`
-        txt += `<button id="olvasas">OLVASÁS</button>`
+    #gombMegjelenit(pElem, list){
+        let txt = ""
+        list.forEach(elem => {
+            txt += `<button id="${elem}">${elem}</button>`
+        });
         pElem.html(txt);
     }
     

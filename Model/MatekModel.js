@@ -11,7 +11,6 @@ class MatekModel{
         this.#szamotGeneral(list, difficulty, numbers);
         //Feladatok = Összeadás(1), Kivonás(2), Szorzás(3), Osztás(4) ---- az utóbbi kettő később kerül fejlesztésre!
         this.taskType = Math.floor(Math.random() * 2) + 1;
-        //console.log(this.taskType)
         if(this.taskType == 1){
             this.osszead(this.numberList);
         }else if(this.taskType == 2){
@@ -32,9 +31,7 @@ class MatekModel{
                 number = Math.floor(Math.random() * 250) + 1;
                 this.numberList[i] = number
             }
-        //console.log(number)
         }
-        //console.log(this.numberList)
     }
 
     osszead(){
