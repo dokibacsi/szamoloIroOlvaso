@@ -74,6 +74,17 @@ main{
     cursor: not-allowed;
 }
 
+#alert{
+    width: 20%;
+    border-radius: 25px;
+    font-family: "Unbounded";
+    text-align: center;
+    font-size: 20px;
+    position: fixed;
+    top: 10px;
+    left: 40%;
+}
+
 #joAlert{
     background-color: green;
     color: white;

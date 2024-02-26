@@ -1,4 +1,4 @@
-class EredmenyView{
+class PontszamView{
     #eredmeny
     constructor(eredmeny){
         this.#eredmeny = eredmeny;
@@ -13,4 +13,4 @@ class EredmenyView{
     }
 }
 
-export default EredmenyView
+export default PontszamView

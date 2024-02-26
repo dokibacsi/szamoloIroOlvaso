@@ -4,7 +4,8 @@ import OlvasasModel from "../Model/OlvasasModel.js";
 import FajtaView from "../View/FajtaView.js";
 import GombView from "../View/GombView.js";
 import MatekView from "../View/Feladatok/MatekView.js";
-import EredmenyView from "../View/EredmenyView.js";
+import PontszamView from "../View/PontszamView.js";
+import AlertView from "../View/AlertView.js";
 
 class Controler {
   constructor() {
@@ -32,29 +33,30 @@ class Controler {
     this.irasGomb = $(`#${this.feladatCim[1]}`);
     this.olvasasGomb = $(`#${this.feladatCim[2]}`);
     this.#feladatValaszto(TASKPARENTELEM, TITLEPARENTELEM, this.feladatCim);
-    this.joAlert = $("#joAlert");
-    this.rosszAlert = $("#rosszAlert");
-    this.joAlert.hide();
-    this.rosszAlert.hide();
-    this.pontSzam = 0;
+    this.eredmenyPanel = $("#eredmenyPanel")
+    this.pontSzam = parseInt(0)
     this.fSzam = 0;
   }
 
   #feladatGeneral(feldatSzulo, tipus, feladatCim) {
-    if (tipus == feladatCim && this.fSzam < 20) {
-      this.matekModel = new MatekModel();
-      this.szamLista = this.matekModel.getNumberList();
-      this.taskType = this.matekModel.getMathTaskType();
-      new MatekView(feldatSzulo, this.szamLista, this.taskType);
-      this.kovigomb = $(".next");
-      new EredmenyView(this.pontSzam);
-      console.log(this.fSzam)
-      this.fSzam++;
-      $(this.kovigomb).on("click", () => {
-        this.#feladatEllenorzes();
-        this.#feladatGeneral(feldatSzulo, feladatCim, feladatCim);
-        new EredmenyView(this.pontSzam);
-      });
+      if (tipus == feladatCim) {
+        this.matekModel = new MatekModel();
+        this.szamLista = this.matekModel.getNumberList();
+        this.taskType = this.matekModel.getMathTaskType();
+        new MatekView(feldatSzulo, this.szamLista, this.taskType);
+        this.kovigomb = $(".next");
+        new PontszamView(this.pontSzam);
+        console.log(this.fSzam)
+        this.fSzam++;
+        if(this.fSzam <= 20){
+          $(this.kovigomb).on("click", () => {
+            this.#feladatEllenorzes();
+            this.#feladatGeneral(feldatSzulo, feladatCim, feladatCim);
+            new PontszamView(this.pontSzam);
+          });
+        }else if(this.fSzam == 21){
+          new EredmenyPanelView()
+        }
     }
   }
 
@@ -86,43 +88,19 @@ class Controler {
       const osszeadEredmeny = this.matekModel.osszead();
       //console.log(osszeadEredmeny);
       if (beirtEredmeny == osszeadEredmeny) {
+        new AlertView(1);
         this.pontSzam++;
-        this.joAlert.show("slow");
-        setTimeout(() => {
-          this.joAlert.hide("slow");
-        }, 2500);
-      } else if (beirtEredmeny == "404") {
-        this.joAlert.show("slow");
-        this.pontSzam = String("404 ERROR!");
-        setTimeout(() => {
-          this.joAlert.hide("slow");
-        }, 2500);
       } else {
-        this.rosszAlert.show("slow");
-        setTimeout(() => {
-          this.rosszAlert.hide("slow");
-        }, 2500);
+        new AlertView(0);
       }
     } else {
       const kivonEredmeny = this.matekModel.kivon();
       /* console.log(kivonEredmeny);*/
       if (beirtEredmeny == kivonEredmeny) {
+        new AlertView(1);
         this.pontSzam++;
-        this.joAlert.show("slow");
-        setTimeout(() => {
-          this.joAlert.hide("slow");
-        }, 2500);
-      } else if (beirtEredmeny == "404") {
-        this.joAlert.show("slow");
-        this.pontSzam = String("404 ERROR!");
-        setTimeout(() => {
-          this.joAlert.hide("slow");
-        }, 2500);
       } else {
-        this.rosszAlert.show("slow");
-        setTimeout(() => {
-          this.rosszAlert.hide("slow");
-        }, 2500);
+        new AlertView(0);
       }
     }
     /* console.log(beirtEredmeny); */
