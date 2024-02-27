@@ -1,10 +1,10 @@
 import IrasView from "../View/KartyaView.js";
 import QuizView from "../View/QuizView.js";
-import MatekView from "./MatekControler.js";
 import IrasModel from "../Model/IrasModel.js";
 import QuizModel from "../Model/QuizModel.js";
 import GombView from "../View/GombView.js";
 import FajtaView from "../View/FajtaView.js";
+import MatekControler from "./MatekControler.js";
 
 
 class Controler {
@@ -32,7 +32,7 @@ class Controler {
   #feladatValaszto(feldatSzulo, cimTer, feladatCimLista) {
     $(this.matekGomb).on("click", () => {
       new FajtaView(cimTer, feladatCimLista[0]);
-      const MatekNezet = new MatekView(this.foTer, this.eredmenyPanel);
+      const MatekNezet = new MatekControler(this.foTer, this.eredmenyPanel);
       MatekNezet.getFeladatGeneral(feldatSzulo, feladatCimLista[0], feladatCimLista[0]);
       this.TASKPARENTELEM.show("slow")
       this.BTNPARENTELEM.hide("slow")
