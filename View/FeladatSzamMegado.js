@@ -9,7 +9,7 @@ class FeladatSzamMegado{
   
     #feladatOsszeallit(pElem) {
       let txt = "";
-        txt += `<p>Feladatok száma: </p>`;
+        txt += `<p id="fszam">Feladatok száma: </p>`;
         txt += '<input class="nbr" type="number" name="number" id="feladatSzam">';
         txt += `<button class="next">Következő</button>`;
       pElem.html(txt);

@@ -79,7 +79,7 @@ main{
 }
 
 #alert{
-    width: 20%;
+    max-width: 100px;
     border-radius: 25px;
     font-family: "Unbounded";
     text-align: center;
@@ -87,12 +87,13 @@ main{
     position: fixed;
     top: 10px;
     left: 40%;
+    padding: 10px;
 }
 
 #joAlert{
     background-color: green;
+    padding: 10px 20px 10px 20px;
     color: white;
-    width: 20%;
     border: 2px solid white;
     border-radius: 25px;
     font-family: "Unbounded";
@@ -105,8 +106,8 @@ main{
 
 #rosszAlert{
     background-color: darkred;
+    padding: 10px 20px 10px 20px;
     color: white;
-    width: 20%;
     border: 2px solid white;
     border-radius: 25px;
     font-family: "Unbounded";
@@ -307,5 +308,19 @@ footer{
         margin: auto;
         margin-top: 10px;
         margin-bottom: 10px;
+    }
+
+    #joAlert{
+        max-width: 100px;
+    }
+    
+    #rosszAlert{
+        max-width: 100px;
+    }
+
+    #feladatTer #fszam{
+        margin: 0;
+        margin-top: 25px;
+        margin-left: 75px;
     }
 }
