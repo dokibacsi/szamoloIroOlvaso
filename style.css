@@ -315,14 +315,15 @@ footer{
         margin: auto;
         margin-top: 10px;
         margin-bottom: 10px;
+        max-width: 300px;
     }
 
     #joAlert{
-        max-width: 100px;
+        max-width: 300px;
     }
     
     #rosszAlert{
-        max-width: 100px;
+        max-width: 300px;
     }
 
     #feladatTer #fszam{

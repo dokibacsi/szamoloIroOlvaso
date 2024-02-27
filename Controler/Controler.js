@@ -27,12 +27,12 @@ class Controler {
   #View() {
     this.feladatCim = ["MATEK", "QUIZ", "KÁRTYAJÁTÉK"];
     this.foTer = $("#foTer");
-    const BTNPARENTELEM = $("#feladatValaszto");
+    this.BTNPARENTELEM = $("#feladatValaszto");
     const TITLEPARENTELEM = $("#feladatFajta");
     this.TASKPARENTELEM = $("#feladatTer");
     this.pontszamSzulo = $("#eredmenyKijelzo")
     this.pontszamSzulo.hide()
-    new GombView(BTNPARENTELEM, this.feladatCim);
+    new GombView(this.BTNPARENTELEM, this.feladatCim);
     new FajtaView(TITLEPARENTELEM, "Válasz egy feladatot!");
     this.matekGomb = $(`#${this.feladatCim[0]}`);
     this.irasGomb = $(`#${this.feladatCim[1]}`);
@@ -105,12 +105,14 @@ class Controler {
       new FajtaView(cimTer, feladatCimLista[0]);
       this.#feladatGeneral(feldatSzulo, feladatCimLista[0], feladatCimLista[0]);
       this.TASKPARENTELEM.show("slow")
+      this.BTNPARENTELEM.hide("slow")
       this.matekGomb.attr("disabled", true);
       this.irasGomb.attr("disabled", false);
       this.olvasasGomb.attr("disabled", false);
     });
     $(this.irasGomb).on("click", () => {
       new FajtaView(cimTer, this.feladatCim[1]);
+      this.BTNPARENTELEM.hide("slow")
       this.TASKPARENTELEM.hide("slow")
       this.pontszamSzulo.hide("slow")
       this.olvasasGomb.attr("disabled", false);
@@ -119,6 +121,7 @@ class Controler {
     });
     $(this.olvasasGomb).on("click", () => {
       new FajtaView(cimTer, this.feladatCim[2]);
+      this.BTNPARENTELEM.hide("slow")
       this.TASKPARENTELEM.hide("slow")
       this.pontszamSzulo.hide("slow")
       this.olvasasGomb.attr("disabled", true);
