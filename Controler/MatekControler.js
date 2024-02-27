@@ -5,12 +5,12 @@ import MatekEredmenyPanelView from "../View/Matek/MatekEredmenyPanelView.js";
 import AlertView from "../View/AlertView.js";
 import FeladatOsszeallitView from "../View/Matek/FeladatOsszeallit.js";
 
-class MatekView {
+class MatekControler {
   #foTer
   #eredmenyPanel
   constructor(foTer, eredmenyPanel) {
-    this.#foTer = foTer
-    this.#eredmenyPanel = eredmenyPanel
+    this.#foTer = foTer;
+    this.#eredmenyPanel = eredmenyPanel;
     this.pontSzam = 0;
     this.fSzam = 0;
     this.megadottFeladatSzam = 0;
@@ -95,4 +95,4 @@ class MatekView {
   }
 }
 
-export default MatekView;
+export default MatekControler;
