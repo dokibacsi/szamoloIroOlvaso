@@ -1,5 +1,5 @@
-import FoControler from "../Controler/FoControler.js"
+import Controler from "../Controler/Controler.js"
 
 $(() => {
-    new FoControler()
+    new Controler()
 })
