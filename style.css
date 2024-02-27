@@ -9,10 +9,8 @@ body{
 
 main{
     max-width: 1250px;
-    width: 90%;
     margin: auto;
     margin-top: 250px;
-
 }
 
 #foTer{
@@ -286,6 +284,15 @@ footer{
 }
 
 @media screen and (max-width: 450px){
+
+    main{
+        margin-top: 0;
+    }
+
+    #foTer{
+        margin: 0;
+    }
+
     #feladatTer{
         margin: auto;
         grid-template-areas: "mfelad"
@@ -322,5 +329,13 @@ footer{
         margin: 0;
         margin-top: 25px;
         margin-left: 75px;
+    }
+
+    #eredmenyPanel{
+        margin: 0;
+    }
+
+    #eredmenyPanel h1{
+        font-size: 30px;
     }
 }
