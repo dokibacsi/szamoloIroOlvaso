@@ -89,10 +89,9 @@ main{
     color: white;
 }
 
-#successAlert{
+#correctAlert{
     background-color: green;
     padding: 10px 20px 10px 20px;
-
     border: 2px solid white;
     border-radius: 25px;
     font-family: "Unbounded";
@@ -313,6 +312,19 @@ footer{
     main{
         margin-top: 0;
     }
+    #alert{
+            margin-top: 500px;
+    }
+
+    #wrongAlert{
+        margin-top: 500px;
+        left: 50px;
+    }
+    #correctAlert{
+        margin-top: 500px;
+        left: 50px;
+    }
+    
 
     #foTer{
         margin: 0;

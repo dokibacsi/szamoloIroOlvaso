@@ -15,7 +15,7 @@ class AlertView{
         let txt = ""
         if(alertType == 1){
             parentElement.show("slow");
-            txt += `<div id="successAlert"><p>${message}</p></div>`
+            txt += `<div id="correctAlert"><p>${message}</p></div>`
             parentElement.html(txt)
             setTimeout(() => {
                 parentElement.hide("slow");
