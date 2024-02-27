@@ -1,4 +1,4 @@
-import Controler from "./Controler/Controler"
+import Controler from "../Controler/Controler.js"
 
 
 $(() => {
