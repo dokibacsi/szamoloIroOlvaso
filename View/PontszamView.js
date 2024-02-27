@@ -4,7 +4,6 @@ class PontszamView{
     constructor(pontszam, szulo){
         this.#pontszam = pontszam;
         this.#szulo = szulo
-        this.hiba = 20 - this.#pontszam 
         this.#pontszamMegjelenit(this.#szulo)
     }
 

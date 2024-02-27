@@ -1,6 +1,6 @@
 import MatekModel from "../Model/MatekModel.js";
 import IrasModel from "../Model/IrasModel.js";
-import OlvasasModel from "../Model/OlvasasModel.js";
+import QuizModel from "../Model/QuizModel.js";
 import FajtaView from "../View/FajtaView.js";
 import GombView from "../View/GombView.js";
 import MatekView from "../View/Feladatok/MatekView.js";
@@ -20,7 +20,7 @@ class Controler {
 
   #Model() {
     this.irasModle = new IrasModel();
-    this.olvasModle = new OlvasasModel();
+    this.QuizModle = new QuizModel();
     this.matekModel = new MatekModel();
   }
 
@@ -35,8 +35,8 @@ class Controler {
     new GombView(this.BTNPARENTELEM, this.feladatCim);
     new FajtaView(TITLEPARENTELEM, "Válasz egy feladatot!");
     this.matekGomb = $(`#${this.feladatCim[0]}`);
-    this.irasGomb = $(`#${this.feladatCim[1]}`);
-    this.olvasasGomb = $(`#${this.feladatCim[2]}`);
+    this.quizGomb = $(`#${this.feladatCim[1]}`);
+    this.kartyajGomb = $(`#${this.feladatCim[2]}`);
     this.#feladatValaszto(this.TASKPARENTELEM, TITLEPARENTELEM, this.feladatCim);
     this.eredmenyPanel = $("#eredmenyPanel");
     this.eredmenyPanel.hide();
@@ -107,26 +107,26 @@ class Controler {
       this.TASKPARENTELEM.show("slow")
       this.BTNPARENTELEM.hide("slow")
       this.matekGomb.attr("disabled", true);
-      this.irasGomb.attr("disabled", false);
-      this.olvasasGomb.attr("disabled", false);
+      this.quizGomb.attr("disabled", false);
+      this.kartyajGomb.attr("disabled", false);
     });
-    $(this.irasGomb).on("click", () => {
+    $(this.quizGomb).on("click", () => {
       new FajtaView(cimTer, this.feladatCim[1]);
       this.BTNPARENTELEM.hide("slow")
       this.TASKPARENTELEM.hide("slow")
       this.pontszamSzulo.hide("slow")
-      this.olvasasGomb.attr("disabled", false);
+      this.kartyajGomb.attr("disabled", false);
       this.matekGomb.attr("disabled", false);
-      this.irasGomb.attr("disabled", true);
+      this.quizGomb.attr("disabled", true);
     });
-    $(this.olvasasGomb).on("click", () => {
+    $(this.kartyajGomb).on("click", () => {
       new FajtaView(cimTer, this.feladatCim[2]);
       this.BTNPARENTELEM.hide("slow")
       this.TASKPARENTELEM.hide("slow")
       this.pontszamSzulo.hide("slow")
-      this.olvasasGomb.attr("disabled", true);
+      this.kartyajGomb.attr("disabled", true);
       this.matekGomb.attr("disabled", false);
-      this.irasGomb.attr("disabled", false);
+      this.quizGomb.attr("disabled", false);
     });
   }
 
@@ -136,19 +136,19 @@ class Controler {
       const osszeadEredmeny = this.matekModel.osszead();
       //console.log(osszeadEredmeny);
       if (beirtEredmeny == osszeadEredmeny) {
-        new AlertView(1);
+        new AlertView(1, "A válasz jó! +1 pont!");
         this.pontSzam++;
       } else {
-        new AlertView(0);
+        new AlertView(4, "A válasz rossz! 0 pont!");
       }
     } else {
       const kivonEredmeny = this.matekModel.kivon();
       /* console.log(kivonEredmeny);*/
       if (beirtEredmeny == kivonEredmeny) {
-        new AlertView(1);
+        new AlertView(1, "A válasz jó! +1 pont!");
         this.pontSzam++;
       } else {
-        new AlertView(0);
+        new AlertView(4, "A válasz rossz! 0 pont!");
       }
     }
     /* console.log(beirtEredmeny); */
