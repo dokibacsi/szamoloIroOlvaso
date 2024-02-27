@@ -7,7 +7,7 @@ import GombView from "../View/GombView.js";
 import FajtaView from "../View/FajtaView.js";
 
 
-class FoControler {
+class Controler {
   constructor() {
     this.list;
     this.szamLista = [];
@@ -59,4 +59,4 @@ class FoControler {
   }
 }
 
-export default FoControler;
+export default Controler;
