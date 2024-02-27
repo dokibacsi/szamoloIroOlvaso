@@ -12,6 +12,10 @@ main{
     width: 90%;
     margin: auto;
     margin-top: 250px;
+
+}
+
+#foTer{
     border: 2px solid white;
     border-radius: 25px;
 }
@@ -119,6 +123,10 @@ main{
     text-align: right;
 }
 
+#feladatTer #pontszam{
+    margin: 0;
+}
+
 #feladatTer .nbr{
     grid-area: "szambe";
     margin-top: auto;
@@ -128,11 +136,11 @@ main{
 
 #feladatTer{
     margin: auto;
-    width: 50%;
     text-align: center;
     font-size: 40px;
     display: grid;
     grid-template-areas: "mfelad szambe kovi";
+    max-width: 650px;
 }
 
 #feladatTer .next{
@@ -141,7 +149,6 @@ main{
     transition: 0.5s;
     border: 2px solid white;
     border-radius: 25px;
-    width: 90%;
     margin: auto;
     padding: 10px;
     font-family: "Unbounded";
@@ -155,6 +162,15 @@ main{
     border: 2px solid purple;
     margin: auto;
     cursor: pointer;
+}
+
+#feladatTer .next:disabled{
+    transition: 0.5s;
+    border: 2px solid white;
+    background-color: darkred;
+    color: white;
+    width: 88%;
+    cursor: not-allowed;
 }
 
 #feladatTer #feladat{
@@ -175,6 +191,47 @@ main{
 #feladatTer .nbr::-webkit-inner-spin-button{
     -webkit-appearance: none;
     margin: 0;
+}
+
+#eredmenyPanel{
+    border: 2px solid white;
+    background-color: rgb(18, 17, 26);
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 1250px;
+    margin: auto;
+    margin-top: 250px;
+    text-align: center;
+    font-family: "Unbounded";
+}
+
+#eredmenyPanel h1{
+    font-size: 40px;
+}
+
+#eredmenyPanel h3{
+    font-family: 30px;
+}
+
+#eredmenyPanel button{
+    background-color: rgb(18, 17, 26);
+    color: white;
+    transition: 0.5s;
+    border: 2px solid white;
+    border-radius: 25px;
+    width: 90%;
+    margin: auto;
+    padding: 10px;
+    font-family: "Unbounded";
+    font-size: 20px;
+    width: 200px;
+}
+
+#eredmenyPanel button:hover{
+    transition: 0.5s;
+    border: 2px solid purple;
+    margin: auto;
+    cursor: pointer;
 }
 
 footer{
@@ -201,15 +258,54 @@ footer{
     }
 
     #feladatTer{
-        margin: auto;
+        max-width: 400px;
         text-align: center;
-        font-size: 35px;
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-areas: "mfelad szambe"
+                             "kovi kovi";
+    }
+
+    #feladatTer .nbr{
+        width: 200px;
+    }
+
+    #feladatTer p{
+        text-align: center;
+        width: 200px;
+    }
+
+    #feladatTer .next{
+        margin-left: 100px;
     }
     
     #feladatTer #nbr{
         font-size: 35px;
         width: 100px;
+    }
+}
+
+@media screen and (max-width: 450px){
+    #feladatTer{
+        margin: auto;
+        grid-template-areas: "mfelad"
+                             "szambe"
+                             "kovi";
+    }
+    
+    #feladatTer p{
+        margin: 0;
+        margin-left: 40px;
+        margin-top: 25px;
+    }
+
+    #feladatTer .next{
+        margin: auto;
+        text-align: center;
+    }
+
+    #feladatTer .nbr{
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 }

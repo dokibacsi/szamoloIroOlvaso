@@ -1,15 +1,16 @@
 class PontszamView{
-    #eredmeny
-    constructor(eredmeny){
-        this.#eredmeny = eredmeny;
-        this.eredmenySzulo = $("#eredmenyKijelzo")
-        this.hiba = 20 - this.#eredmeny 
-        this.#eredmenyMegjelenit()
+    #pontszam
+    #szulo
+    constructor(pontszam, szulo){
+        this.#pontszam = pontszam;
+        this.#szulo = szulo
+        this.hiba = 20 - this.#pontszam 
+        this.#pontszamMegjelenit(this.#szulo)
     }
 
-    #eredmenyMegjelenit(){
-        let text = `<p>pontszám: ${this.#eredmeny}</p>`
-        this.eredmenySzulo.html(text)
+    #pontszamMegjelenit(szulo){
+        let text = `<p id="pontszam">pontszám: ${this.#pontszam}</p>`
+        szulo.html(text)
     }
 }
 

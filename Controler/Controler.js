@@ -6,13 +6,15 @@ import GombView from "../View/GombView.js";
 import MatekView from "../View/Feladatok/MatekView.js";
 import PontszamView from "../View/PontszamView.js";
 import AlertView from "../View/AlertView.js";
+import MatekEredmenyPanelView from "../View/MatekEredmenyPanelView.js";
+import FeladatSzamMegado from "../View/FeladatSzamMegado.js";
 
 class Controler {
   constructor() {
     this.list;
     this.szamLista = [];
     this.feladatLista = [];
-    const model = this.#Model();
+    this.#Model();
     this.#View();
   }
 
@@ -24,39 +26,77 @@ class Controler {
 
   #View() {
     this.feladatCim = ["MATEK", "QUIZ", "KÁRTYAJÁTÉK"];
+    this.foTer = $("#foTer");
     const BTNPARENTELEM = $("#feladatValaszto");
     const TITLEPARENTELEM = $("#feladatFajta");
-    const TASKPARENTELEM = $("#feladatTer");
+    this.TASKPARENTELEM = $("#feladatTer");
+    this.pontszamSzulo = $("#eredmenyKijelzo")
+    this.pontszamSzulo.hide()
     new GombView(BTNPARENTELEM, this.feladatCim);
     new FajtaView(TITLEPARENTELEM, "Válasz egy feladatot!");
     this.matekGomb = $(`#${this.feladatCim[0]}`);
     this.irasGomb = $(`#${this.feladatCim[1]}`);
     this.olvasasGomb = $(`#${this.feladatCim[2]}`);
-    this.#feladatValaszto(TASKPARENTELEM, TITLEPARENTELEM, this.feladatCim);
-    this.eredmenyPanel = $("#eredmenyPanel")
-    this.pontSzam = parseInt(0)
+    this.#feladatValaszto(this.TASKPARENTELEM, TITLEPARENTELEM, this.feladatCim);
+    this.eredmenyPanel = $("#eredmenyPanel");
+    this.eredmenyPanel.hide();
+    this.pontSzam = 0;
     this.fSzam = 0;
+    this.megadottFeladatSzam = 0;
   }
 
   #feladatGeneral(feldatSzulo, tipus, feladatCim) {
-      if (tipus == feladatCim) {
-        this.matekModel = new MatekModel();
-        this.szamLista = this.matekModel.getNumberList();
-        this.taskType = this.matekModel.getMathTaskType();
-        new MatekView(feldatSzulo, this.szamLista, this.taskType);
-        this.kovigomb = $(".next");
-        new PontszamView(this.pontSzam);
-        console.log(this.fSzam)
-        this.fSzam++;
-        if(this.fSzam <= 20){
-          $(this.kovigomb).on("click", () => {
-            this.#feladatEllenorzes();
-            this.#feladatGeneral(feldatSzulo, feladatCim, feladatCim);
-            new PontszamView(this.pontSzam);
-          });
-        }else if(this.fSzam == 21){
-          new EredmenyPanelView()
+    if (tipus == feladatCim) {
+      this.pontSzam = 0;
+      new FeladatSzamMegado(feldatSzulo);
+      this.kovigomb = $(".next");
+      this.kovigomb.on("click", () => {
+        this.feladatSzam = $(".nbr")
+        this.feladatMennyiseg = this.feladatSzam.val()
+        if(this.feladatMennyiseg <= 1){
+          this.feladatMennyiseg = 2
         }
+        this.#matekFeladatGeneral(feldatSzulo, feladatCim, this.feladatMennyiseg)
+        this.pontszamSzulo.show("slow")
+      });
+    }
+  }
+
+  #matekFeladatGeneral(feldatSzulo, feladatCim, feladatMennyisege){
+    this.matekModel = new MatekModel();
+    this.szamLista = this.matekModel.getNumberList();
+    this.taskType = this.matekModel.getMathTaskType();
+    new MatekView(feldatSzulo, this.szamLista, this.taskType);
+    this.kovigomb = $(".next");
+
+    new PontszamView(this.pontSzam, this.pontszamSzulo);
+    this.pontszamSzulo.show("slow")
+    if (this.fSzam == feladatMennyisege - 1) {
+      this.kovigomb.attr("disabled", true);
+      new MatekEredmenyPanelView(
+        this.eredmenyPanel,
+        this.pontSzam,
+        feladatMennyisege
+      );
+      this.foTer.hide("slow");
+      setTimeout(() => {
+        this.eredmenyPanel.show("slow");
+      }, 150);
+    } else {
+      $(this.kovigomb).on("click", () => {
+        
+        this.#feladatEllenorzes();
+        this.#matekFeladatGeneral(feldatSzulo, feladatCim, feladatMennyisege);
+        new PontszamView(this.pontSzam, this.pontszamSzulo);
+        let ujrakezdGomb = $("#ujrakezd");
+        this.fSzam++;
+        //console.log(this.fSzam + " / " +feladatMennyisege)
+        //console.log(this.fSzam);
+        ujrakezdGomb.on("click", () => {
+          this.foTer.show("slow");
+          location.reload();
+        });
+      });
     }
   }
 
@@ -64,18 +104,23 @@ class Controler {
     $(this.matekGomb).on("click", () => {
       new FajtaView(cimTer, feladatCimLista[0]);
       this.#feladatGeneral(feldatSzulo, feladatCimLista[0], feladatCimLista[0]);
+      this.TASKPARENTELEM.show("slow")
       this.matekGomb.attr("disabled", true);
       this.irasGomb.attr("disabled", false);
       this.olvasasGomb.attr("disabled", false);
     });
     $(this.irasGomb).on("click", () => {
       new FajtaView(cimTer, this.feladatCim[1]);
+      this.TASKPARENTELEM.hide("slow")
+      this.pontszamSzulo.hide("slow")
       this.olvasasGomb.attr("disabled", false);
       this.matekGomb.attr("disabled", false);
       this.irasGomb.attr("disabled", true);
     });
     $(this.olvasasGomb).on("click", () => {
       new FajtaView(cimTer, this.feladatCim[2]);
+      this.TASKPARENTELEM.hide("slow")
+      this.pontszamSzulo.hide("slow")
       this.olvasasGomb.attr("disabled", true);
       this.matekGomb.attr("disabled", false);
       this.irasGomb.attr("disabled", false);
