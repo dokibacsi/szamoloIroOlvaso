@@ -1,10 +1,10 @@
 import IrasView from "../View/KartyaView.js";
-import QuizView from "../View/QuizView.js";
 import IrasModel from "../Model/IrasModel.js";
 import QuizModel from "../Model/QuizModel.js";
 import GombView from "../View/GombView.js";
 import FajtaView from "../View/FajtaView.js";
 import MatekControler from "./MatekControler.js";
+import QuizControler from "./QuizControler.js";
 
 
 class Controler {
@@ -17,6 +17,7 @@ class Controler {
     this.BTNPARENTELEM = $("#feladatValaszto");
     this.TITLEPARENTELEM = $("#feladatFajta");
     this.TASKPARENTELEM = $("#feladatTer");
+    this.QUIZTER = $("#quizTer");
     new GombView(this.BTNPARENTELEM, this.feladatCim);
     new FajtaView(this.TITLEPARENTELEM, "Válasz egy feladatot!");
     this.matekGomb = $(`#${this.feladatCim[0]}`);
@@ -26,14 +27,13 @@ class Controler {
     this.eredmenyPanel = $("#eredmenyPanel");
     this.eredmenyPanel.hide();
     new IrasView();
-    new QuizView();
   }
 
   #feladatValaszto(feldatSzulo, cimTer, feladatCimLista) {
     $(this.matekGomb).on("click", () => {
       new FajtaView(cimTer, feladatCimLista[0]);
-      const MatekNezet = new MatekControler(this.foTer, this.eredmenyPanel);
-      MatekNezet.getFeladatGeneral(feldatSzulo, feladatCimLista[0], feladatCimLista[0]);
+      const MatekC = new MatekControler(this.foTer, this.eredmenyPanel);
+      MatekC.getFeladatGeneral(feldatSzulo, feladatCimLista[0], feladatCimLista[0]);
       this.TASKPARENTELEM.show("slow")
       this.BTNPARENTELEM.hide("slow")
       this.matekGomb.attr("disabled", true);
@@ -42,8 +42,9 @@ class Controler {
     });
     $(this.quizGomb).on("click", () => {
       new FajtaView(cimTer, this.feladatCim[1]);
+      const QuizC = new QuizControler(this.QUIZTER); 
       this.BTNPARENTELEM.hide("slow")
-      this.TASKPARENTELEM.hide("slow")
+      this.QUIZTER.show("slow")
       this.kartyajGomb.attr("disabled", false);
       this.matekGomb.attr("disabled", false);
       this.quizGomb.attr("disabled", true);

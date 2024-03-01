@@ -1,6 +1,5 @@
 class QuizModel{
     constructor(){
-        
     }
 }
 
