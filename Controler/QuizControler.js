@@ -26,6 +26,11 @@ class QuizControler {
                 EgyesValasz.css("border", "2px solid green");
                 KettesValasz.css("border", "2px solid red");
                 HarmasValasz.css("border", "2px solid red");
+                setTimeout(() => {
+                    this.#kerdesGeneral(list)
+                    this.#valaszEll(list, this.index)
+                }, 1500)
+                
             }
         })
         KettesValasz.on("click", () => {
@@ -34,6 +39,10 @@ class QuizControler {
                 EgyesValasz.css("background-color", "red");
                 KettesValasz.css("background-color", "green");
                 HarmasValasz.css("background-color", "red");
+                setTimeout(() => {
+                    this.#kerdesGeneral(list)
+                    this.#valaszEll(list, this.index)
+                }, 1500)
             }
         })
         HarmasValasz.on("click", ()=>{
@@ -42,6 +51,10 @@ class QuizControler {
                 EgyesValasz.css("border", "2px solid red");
                 KettesValasz.css("border", "2px solid red");
                 HarmasValasz.css("border", "2px solid green");
+                setTimeout(() => {
+                    this.#kerdesGeneral(list)
+                    this.#valaszEll(list, this.index)
+                }, 1500)
             }
         })
     }
