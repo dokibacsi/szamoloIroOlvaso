@@ -28,11 +28,9 @@ class QuizControler {
                 EgyesValasz.css("border", "2px solid green");
                 KettesValasz.css("border", "2px solid red");
                 HarmasValasz.css("border", "2px solid red");
-                new AlertView(1, "A válasz jó! +1 pont!");
             } else {
                 EgyesValasz.css("border", "2px solid red");
                 this.#gombLetilt(gombLista)
-                new AlertView(4, `Helyes megfejtés: ${list[index].joValasz}`);
             }
             this.#idozito()
         })
@@ -42,11 +40,9 @@ class QuizControler {
                 EgyesValasz.css("border", "2px solid red");
                 KettesValasz.css("border", "2px solid green");
                 HarmasValasz.css("border", "2px solid red");
-                new AlertView(1, "A válasz jó! +1 pont!");
             } else {
                 KettesValasz.css("border", "2px solid red");
                 this.#gombLetilt(gombLista)
-                new AlertView(4, `Helyes megfejtés: ${list[index].joValasz}`);
             }
             this.#idozito()
 
@@ -57,11 +53,9 @@ class QuizControler {
                 EgyesValasz.css("border", "2px solid red");
                 KettesValasz.css("border", "2px solid red");
                 HarmasValasz.css("border", "2px solid green");
-                new AlertView(1, "A válasz jó! +1 pont!");
             } else {
                 HarmasValasz.css("border", "2px solid red");
                 this.#gombLetilt(gombLista)
-                new AlertView(4, `Helyes megfejtés: ${list[index].joValasz}`);
             }
             this.#idozito()
         })
