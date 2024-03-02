@@ -29,9 +29,11 @@ main{
     text-align: center;
     font-size: 40px;
     font-family: "Trade Winds";
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     top: 0;
+    border-bottom: 2px solid white;
+
 }
 
 #feladatValaszto{
@@ -173,18 +175,27 @@ main{
     max-width: 650px;
 }
 
-#quizTer .valasz{
+#quizTer h1{
+    width: 90%;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+#quizTer button{
     background-color: rgb(18, 17, 26);
     color: white;
+    font-family: "Unbounded";
     border: 2px solid white;
     border-radius: 25px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    width: 90%;
     padding: 10px;
     font-size: 20px;
     transition: 0.5s;
 }
 
-#quizTer .valasz:hover{
+#quizTer button:hover{
     transition: 0.5s;
     border: 2px solid purple;
     cursor: pointer;

@@ -8,7 +8,7 @@ class FajtaView{
     }
 
     #fajtaSzovegMegjelenit(pElem, text){
-        let title = `${text}`
+        let title = `<p>${text}</p>`
         pElem.html(title);
     }
 
