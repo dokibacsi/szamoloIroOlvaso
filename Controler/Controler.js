@@ -1,10 +1,9 @@
 import IrasView from "../View/KartyaView.js";
-import IrasModel from "../Model/IrasModel.js";
-import QuizModel from "../Model/QuizModel.js";
 import GombView from "../View/GombView.js";
 import FajtaView from "../View/FajtaView.js";
 import MatekControler from "./MatekControler.js";
 import QuizControler from "./QuizControler.js";
+import CardView from "../View/Kartya/CardView.js";
 
 
 class Controler {
@@ -18,6 +17,7 @@ class Controler {
     this.TITLEPARENTELEM = $("#feladatFajta");
     this.TASKPARENTELEM = $("#feladatTer");
     this.QUIZTER = $("#quizTer");
+    this.CARDTER = $("#cardTer")
     new GombView(this.BTNPARENTELEM, this.feladatCim);
     new FajtaView(this.TITLEPARENTELEM, "Válasz egy feladatot!");
     this.matekGomb = $(`#${this.feladatCim[0]}`);
@@ -53,6 +53,8 @@ class Controler {
       new FajtaView(cimTer, this.feladatCim[2]);
       this.BTNPARENTELEM.hide("slow")
       this.TASKPARENTELEM.hide("slow")
+      this.CARDTER.show("slow")
+      new CardView(this.CARDTER)
       this.kartyajGomb.attr("disabled", true);
       this.matekGomb.attr("disabled", false);
       this.quizGomb.attr("disabled", false);

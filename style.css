@@ -251,6 +251,26 @@ main{
     margin: 0;
 }
 
+#cardTer{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+#card{
+    max-width: 200px;
+    max-height: 200px;
+    border: 2px solid white;
+    background-color: rgb(55, 51, 80);
+    margin: 10px;
+}
+
+#card img{
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+
 #eredmenyPanel{
     border: 2px solid white;
     background-color: rgb(18, 17, 26);

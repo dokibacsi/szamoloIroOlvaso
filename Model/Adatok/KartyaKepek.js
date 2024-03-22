@@ -1,0 +1,1 @@
+export const KARTYAKEPEK = ["alma.png", "banan.png", "cseresznye.png", "gorogdinnye.png", "kajszibarack.png", "korte.png", "lemon.png", "orange.png", "oszibarack.png", "sargadinnye.png", "eper.png", "avocado.png", "lime.png", "ananasz.png"]
